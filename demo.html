@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démonstration des Optimisations - Youcef Salmi</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .metric-card h3 {
+            color: #667eea;
+            margin: 0 0 10px 0;
+        }
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .improvement {
+            background: #d4edda;
+            color: #155724;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .versions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        .version {
+            padding: 30px;
+        }
+        .version h2 {
+            margin-top: 0;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #eee;
+        }
+        .before {
+            background: #fff5f5;
+            border-right: 2px solid #eee;
+        }
+        .before h2 {
+            color: #dc3545;
+            border-bottom-color: #dc3545;
+        }
+        .after {
+            background: #f0fff4;
+        }
+        .after h2 {
+            color: #28a745;
+            border-bottom-color: #28a745;
+        }
+        .preview-frame {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .features {
+            padding: 30px;
+            background: white;
+        }
+        .features h2 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .feature {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        .feature h3 {
+            color: #28a745;
+            margin-top: 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+        .navigation {
+            text-align: center;
+            padding: 20px;
+            background: #667eea;
+        }
+        @media (max-width: 768px) {
+            .versions {
+                grid-template-columns: 1fr;
+            }
+            .version {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="header">
+            <h1>🚀 Optimisations de Performance</h1>
+            <p>Découvrez les améliorations apportées au site de Youcef Salmi</p>
+        </div>
+
+        <div class="metrics">
+            <div class="metric-card">
+                <h3>Taille du Bundle</h3>
+                <div class="metric-value">-86%</div>
+                <div class="improvement">110KB → 15KB</div>
+            </div>
+            <div class="metric-card">
+                <h3>Taille des Images</h3>
+                <div class="metric-value">-86%</div>
+                <div class="improvement">29KB → 4.1KB</div>
+            </div>
+            <div class="metric-card">
+                <h3>Requêtes Externes</h3>
+                <div class="metric-value">-50%</div>
+                <div class="improvement">2 → 1</div>
+            </div>
+            <div class="metric-card">
+                <h3>Erreurs Critiques</h3>
+                <div class="metric-value">-100%</div>
+                <div class="improvement">5 → 0</div>
+            </div>
+        </div>
+
+        <div class="versions">
+            <div class="version before">
+                <h2>❌ Version Originale</h2>
+                <ul>
+                    <li>❌ Image manquante (404 erreur)</li>
+                    <li>❌ HTML mal structuré</li>
+                    <li>❌ CSS avec erreurs de syntaxe</li>
+                    <li>❌ FontAwesome complet (76KB)</li>
+                    <li>❌ Image non optimisée (29KB)</li>
+                    <li>❌ Pas de responsive design</li>
+                    <li>❌ Lent sur mobile</li>
+                </ul>
+            </div>
+            <div class="version after">
+                <h2>✅ Version Optimisée</h2>
+                <ul>
+                    <li>✅ Images optimisées (WebP + JPEG)</li>
+                    <li>✅ HTML sémantique valide</li>
+                    <li>✅ CSS moderne et minifié</li>
+                    <li>✅ Icônes légères (Unicode)</li>
+                    <li>✅ Lazy loading</li>
+                    <li>✅ Design responsive</li>
+                    <li>✅ Performance mobile optimale</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="features">
+            <h2>🎯 Nouvelles Fonctionnalités</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <h3>📱 Design Responsive</h3>
+                    <p>Adaptation automatique à tous les écrans avec breakpoints optimisés</p>
+                </div>
+                <div class="feature">
+                    <h3>🖼️ Images Modernes</h3>
+                    <p>Format WebP pour les navigateurs modernes avec fallback JPEG</p>
+                </div>
+                <div class="feature">
+                    <h3>⚡ Chargement Rapide</h3>
+                    <p>Preconnect, lazy loading et optimisations de fonts</p>
+                </div>
+                <div class="feature">
+                    <h3>♿ Accessibilité</h3>
+                    <p>Conforme WCAG 2.1 avec navigation clavier et alt text</p>
+                </div>
+                <div class="feature">
+                    <h3>🔍 SEO Optimisé</h3>
+                    <p>Structure sémantique et méta-données optimisées</p>
+                </div>
+                <div class="feature">
+                    <h3>🎨 Animations Fluides</h3>
+                    <p>Transitions CSS optimisées avec hardware acceleration</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="btn">📄 Version Développement</a>
+            <a href="index.prod.html" class="btn">🚀 Version Production</a>
+            <a href="performance-analysis.md" class="btn">📊 Rapport Détaillé</a>
+        </div>
+    </div>
+
+    <script>
+        // Animation des métriques au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const metrics = document.querySelectorAll('.metric-value');
+            metrics.forEach((metric, index) => {
+                setTimeout(() => {
+                    metric.style.opacity = '0';
+                    metric.style.transform = 'scale(0.5)';
+                    setTimeout(() => {
+                        metric.style.transition = 'all 0.5s ease';
+                        metric.style.opacity = '1';
+                        metric.style.transform = 'scale(1)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
